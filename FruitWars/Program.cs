@@ -1,4 +1,5 @@
-﻿using FruitWars.Models;
+﻿using FruitWars.Enums;
+using FruitWars.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,72 @@ namespace FruitWars
 
             char[,] matrix = new char[MATRIX_ROWS, MATRIX_COLUMNS];
 
-            CreateMatrix(matrix);
+            IDictionary<Point, char> points = CreateMatrix(matrix, firstPlayer, secondPlayer, true);
             Console.WriteLine($"Player1 : { firstPlayer.PlayerType.Power} Power; { firstPlayer.PlayerType.Speed} Speed;");
             Console.WriteLine($"Player2 : { secondPlayer.PlayerType.Power} Power; { secondPlayer.PlayerType.Speed} Speed;");
+
+            //first check the value then count?
+            for (int i = 0; i < firstPlayer.PlayerType.Speed; i++)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                Directions direction = ReadUserKeyMove(key);
+                switch (direction)
+                {
+                    case Directions.Left:
+                        int positionLeftY = firstPlayer.Position.Y - 1;
+                        if (positionLeftY >= MATRIX_ROWS)
+                        {
+                            Console.WriteLine("Change the direction");
+                            return;
+                        }
+                        firstPlayer.Position.Y = positionLeftY;
+                        Turn(matrix, firstPlayer, secondPlayer);
+                        break;
+                    case Directions.Right:
+                        int positionRightY = firstPlayer.Position.Y + 1;
+                        if (positionRightY >= MATRIX_ROWS)
+                        {
+                            Console.WriteLine("Change the direction");
+                            return;
+                        }
+                        firstPlayer.Position.Y = positionRightY;
+                        Turn(matrix, firstPlayer, secondPlayer);
+
+                        break;
+                    case Directions.Up:
+                        firstPlayer.Position.X -= 1;
+
+                        int positionUpX = firstPlayer.Position.X - 1;
+                        if (positionUpX >= MATRIX_ROWS)
+                        {
+                            Console.WriteLine("Change the direction");
+                            return;
+                        }
+                        firstPlayer.Position.X = positionUpX;
+                        Turn(matrix, firstPlayer, secondPlayer);
+
+                        break;
+                    case Directions.Down:
+                        firstPlayer.Position.X += 1;
+
+                        int positionDownX = firstPlayer.Position.X - 1;
+                        if (positionDownX >= MATRIX_ROWS)
+                        {
+                            Console.WriteLine("Change the direction");
+                            return;
+                        }
+                        firstPlayer.Position.X = positionDownX;
+                        Turn(matrix, firstPlayer, secondPlayer);
+                        break;
+                    default:
+                        break;
+                }
+                if (i == firstPlayer.PlayerType.Speed - 1)
+                {
+                    Console.WriteLine("Player1, make a move please!");
+                }
+            }
+
         }
 
         private static Player CreatePlayer(string playerName)
@@ -60,44 +124,56 @@ namespace FruitWars
             return number;
         }
 
-        private static void CreateMatrix(char[,] matrix)
+        private static IDictionary<Point, char> CreateMatrix(char[,] matrix, Player firstPlayer, Player secondPlayer, bool isFirstMatrix)
         {
             Random rng = new Random();
-            Point player1 = new Point(rng.Next(0, 7), rng.Next(0, 7));
-            Point player2 = new Point(rng.Next(0, 7), rng.Next(0, 7));
+            Point player1Position = new Point(rng.Next(0, 7), rng.Next(0, 7));
+            Point player2Position = new Point(rng.Next(0, 7), rng.Next(0, 7));
 
-            while (!player1.ValidateDistance(player2, 3))
+            while (!player1Position.ValidateDistance(player2Position, 3))
             {
-                player2 = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                player2Position = new Point(rng.Next(0, 7), rng.Next(0, 7));
             }
 
-            matrix[player1.X, player1.Y] = '1';
-            matrix[player2.X, player2.Y] = '2';
+            firstPlayer.Position = player1Position;
+            secondPlayer.Position = player2Position;
 
-            List<Point> fruitsPoints = new List<Point>();
+            matrix[player1Position.X, player1Position.Y] = '1';
+            matrix[player2Position.X, player2Position.Y] = '2';
 
-            for (int i = 0; i < 4; i++)
+            IDictionary<Point, char> fruits = new Dictionary<Point, char>();
+
+            //List<Point> fruitsPoints = new List<Point>();
+
+            if (isFirstMatrix)
             {
-                Point apple = new Point(rng.Next(0, 7), rng.Next(0, 7));
-                while (player1.Equals(apple) || player2.Equals(apple) || fruitsPoints.Any(f => !f.ValidateDistance(apple, 2)))
+                for (int i = 0; i < 4; i++)
                 {
-                    apple = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    Point apple = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    while (player1Position.Equals(apple) || player2Position.Equals(apple) || fruits.Keys.Any(f => !f.ValidateDistance(apple, 2)))
+                    {
+                        apple = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    }
+                    matrix[apple.X, apple.Y] = 'A';
+                    //fruitsPoints.Add(apple);
+                    fruits.Add(apple, 'A');
                 }
-                matrix[apple.X, apple.Y] = 'A';
-                fruitsPoints.Add(apple);
-            }
 
-            for (int i = 0; i < 3; i++)
-            {
-                Point pear = new Point(rng.Next(0, 7), rng.Next(0, 7));
-                while (player1.Equals(pear) || player2.Equals(pear) || fruitsPoints.Any(f => !f.ValidateDistance(pear, 2)))
+                for (int i = 0; i < 3; i++)
                 {
-                    pear = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    Point pear = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    while (player1Position.Equals(pear) || player2Position.Equals(pear) || fruits.Keys.Any(f => !f.ValidateDistance(pear, 2)))
+                    {
+                        pear = new Point(rng.Next(0, 7), rng.Next(0, 7));
+                    }
+                    matrix[pear.X, pear.Y] = 'P';
+                    //fruitsPoints.Add(pear);
+                    fruits.Add(pear, 'A');
                 }
-                matrix[pear.X, pear.Y] = 'P';
-                fruitsPoints.Add(pear);
             }
             PrintMatrix(matrix);
+
+            return fruits;
         }
 
         private static void PrintMatrix(char[,] matrix)
@@ -114,6 +190,35 @@ namespace FruitWars
                 }
                 Console.Write(Environment.NewLine + Environment.NewLine);
             }
+        }
+
+        private static Directions ReadUserKeyMove(ConsoleKeyInfo userKey)
+        {
+            switch (userKey.Key)
+            {
+                case ConsoleKey.DownArrow:
+                    return Directions.Down;
+
+                case ConsoleKey.UpArrow:
+                    return Directions.Up;
+
+                case ConsoleKey.LeftArrow:
+                    return Directions.Left;
+
+                case ConsoleKey.RightArrow:
+                    return Directions.Right;
+
+                default:
+                    Console.WriteLine("Select one key from left, right, up, down");
+                    return Directions.Unknown;
+            }
+        }
+
+        private static void Turn(char[,] matrix, Player firstPlayer, Player secondPlayer)
+        {
+            CreateMatrix(matrix, firstPlayer, secondPlayer, true);
+            Console.WriteLine($"Player1 : { firstPlayer.PlayerType.Power} Power; { firstPlayer.PlayerType.Speed} Speed;");
+            Console.WriteLine($"Player2 : { secondPlayer.PlayerType.Power} Power; { secondPlayer.PlayerType.Speed} Speed;");
         }
     }
 }

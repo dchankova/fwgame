@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fruits.cs" />
+    <Compile Include="Enums\Directions.cs" />
+    <Compile Include="Enums\Fruits.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\Monkey.cs" />
     <Compile Include="Models\Pigeon.cs" />
