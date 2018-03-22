@@ -1,0 +1,14 @@
+D:\test\BedeGaming\FruitWars\FruitWars\bin\Debug\FruitWars.exe.config
+D:\test\BedeGaming\FruitWars\FruitWars\bin\Debug\FruitWars.exe
+D:\test\BedeGaming\FruitWars\FruitWars\bin\Debug\FruitWars.pdb
+D:\test\BedeGaming\FruitWars\FruitWars\obj\Debug\FruitWars.csprojResolveAssemblyReference.cache
+D:\test\BedeGaming\FruitWars\FruitWars\obj\Debug\FruitWars.csproj.CoreCompileInputs.cache
+D:\test\BedeGaming\FruitWars\FruitWars\obj\Debug\FruitWars.exe
+D:\test\BedeGaming\FruitWars\FruitWars\obj\Debug\FruitWars.pdb
+D:\mydocs\repo\FruitWars\bin\Debug\FruitWars.exe.config
+D:\mydocs\repo\FruitWars\bin\Debug\FruitWars.exe
+D:\mydocs\repo\FruitWars\bin\Debug\FruitWars.pdb
+D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.csprojResolveAssemblyReference.cache
+D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.csproj.CoreCompileInputs.cache
+D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.exe
+D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.pdb
