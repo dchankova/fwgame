@@ -12,3 +12,8 @@ D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.csprojResolveAssemblyReference.cach
 D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.csproj.CoreCompileInputs.cache
 D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.exe
 D:\mydocs\repo\FruitWars\obj\Debug\FruitWars.pdb
+C:\SourceControl\C#\bede\fwgame\FruitWars\bin\Debug\FruitWars.exe.config
+C:\SourceControl\C#\bede\fwgame\FruitWars\bin\Debug\FruitWars.exe
+C:\SourceControl\C#\bede\fwgame\FruitWars\bin\Debug\FruitWars.pdb
+C:\SourceControl\C#\bede\fwgame\FruitWars\obj\Debug\FruitWars.exe
+C:\SourceControl\C#\bede\fwgame\FruitWars\obj\Debug\FruitWars.pdb

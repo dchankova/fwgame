@@ -25,17 +25,20 @@ namespace FruitWars.Models
             set { y = value; }
         }
 
-        public bool ValidateDistance(Point second, int distrance)
+        public bool ValidateDistance(Point other, int distrance)
         {
-            if (!Equals(second))
+            if (!Equal(other))
             {
-                if (Math.Abs(Y - second.Y) >= distrance ||
-                    Math.Abs(X - second.X) >= distrance)
+                if (Math.Abs(Y - other.Y) >= distrance ||
+                    Math.Abs(X - other.X) >= distrance)
                 {
                     return true;
                 }
             }
             return false;
         }
+
+        public bool Equal(Point other)
+         => X == other.X && Y == other.Y ? true : false;
     }
 }

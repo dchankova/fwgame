@@ -42,15 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Directions.cs" />
-    <Compile Include="Enums\Fruits.cs" />
-    <Compile Include="Models\Animal.cs" />
-    <Compile Include="Models\Monkey.cs" />
-    <Compile Include="Models\Pigeon.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Enums\Fruit.cs" />
+    <Compile Include="Enums\Move.cs" />
+    <Compile Include="GameAction.cs" />
+    <Compile Include="Models\Warriors\Animal.cs" />
+    <Compile Include="Models\Matrix\MatrixManager.cs" />
+    <Compile Include="Models\Warriors\Monkey.cs" />
+    <Compile Include="Models\Warriors\Pigeon.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Point.cs" />
-    <Compile Include="Models\Turtle.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\Matrix\Point.cs" />
+    <Compile Include="Models\Warriors\Turtle.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,16 @@
 ﻿namespace FruitWars
 {
-    public abstract class Animal
+    public abstract class Animal 
     {
+        protected Animal()
+        {
+            Speed = speed;
+            Power = power;
+        }
+
         protected int speed;
         protected int power;
-        
+
         public int Speed
         {
             get => speed;
@@ -23,15 +29,15 @@
             }
         }
 
-        public void Eat(Fruits fruit)
+        public void Eat(Fruit fruit)
         {
             switch (fruit)
             {
-                case Fruits.Apple:
-                    var power = Power;
+                case Fruit.Apple:
+                    Power += 1;
                     break;
-                case Fruits.Pear:
-                    var speed = Speed;
+                case Fruit.Pear:
+                    Speed += 1;
                     break;
                 default:
                     break;
