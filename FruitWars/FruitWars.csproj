@@ -45,7 +45,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Enums\Fruit.cs" />
     <Compile Include="Enums\Move.cs" />
-    <Compile Include="GameAction.cs" />
     <Compile Include="Models\Warriors\Animal.cs" />
     <Compile Include="Models\Matrix\MatrixManager.cs" />
     <Compile Include="Models\Warriors\Monkey.cs" />
